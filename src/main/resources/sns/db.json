@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "timestamp": 1465414804110,
+  "subscriptions": [
+    {
+      "arn": "14fa8f30-1fd5-13ed-831d-0246ac120002",
+      "topicArn": "arn:aws:sns:us-east-1:942874531250:boaEntregaTopic",
+      "endpoint": "aws-sqs://boaentrega-entregas?amazonSQSEndpoint=http://sqs:9324&accessKey=&secretKey=",
+      "owner": "",
+      "protocol": "sqs",
+      "subscriptionAttributes" : {
+        "RawMessageDelivery": "true"
+      }
+    },
+    {
+      "arn": "14faa283-1fd6-12ed-841d-0242ac160002",
+      "topicArn": "arn:aws:sns:us-east-1:942874531250:boaEntregaTopic",
+      "endpoint": "aws-sqs://boaentrega-entregas-dlq?amazonSQSEndpoint=http://sqs:9324&accessKey=&secretKey=",
+      "owner": "",
+      "protocol": "sqs",
+      "subscriptionAttributes" : {
+        "RawMessageDelivery": "true"
+      }
+    },
+    {
+      "arn": "14fab5e4-1ed5-11ed-861d-024yac120092",
+      "topicArn": "arn:aws:sns:us-east-1:942874531250:boaEntregaTopic",
+      "endpoint": "aws-sqs://boaentrega-faturamento?amazonSQSEndpoint=http://sqs:9324&accessKey=&secretKey=",
+      "owner": "",
+      "protocol": "sqs",
+      "subscriptionAttributes" : {
+        "RawMessageDelivery": "true"
+      }
+    },
+    {
+      "arn": "16faa6fc-1fd5-16ed-891d-0892ac430002",
+      "topicArn": "arn:aws:sns:us-east-1:942874531250:boaEntregaTopic",
+      "endpoint": "aws-sqs://boaentrega-faturamento-dlq?amazonSQSEndpoint=http://sqs:9324&accessKey=&secretKey=",
+      "owner": "",
+      "protocol": "sqs",
+      "subscriptionAttributes" : {
+        "RawMessageDelivery": "true"
+      }
+    }
+  ],
+  "topics": [
+    {
+      "arn": "arn:aws:sns:us-east-1:942874531250:boaEntregaTopic",
+      "name": "boaEntregaTopic"
+    }
+  ]
+}
