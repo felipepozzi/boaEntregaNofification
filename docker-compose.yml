@@ -1,0 +1,49 @@
+version: '3.3'
+services:
+  sns:
+    image: s12v/sns
+    ports:
+      - "9911:9911"
+    volumes:
+        - ./src/main/resources/sns/db.json:/tmp/db.json
+    environment:
+      - DB_PATH=/tmp/db.json
+    depends_on:
+      - sqs
+  sqs:
+    image: s12v/elasticmq
+    ports:
+      - "9324:9324"
+    volumes:
+      - ./src/main/resources/sqs/elasticmq.conf:/etc/elasticmq/elasticmq.conf
+  dynamodb:
+    image: localstack/localstack:latest
+    environment:
+      - AWS_DEFAULT_REGION=sa-east-1
+      - EDGE_PORT=4566
+      - SERVICES=dynamodb
+      - KINESIS_PROVIDER=kinesalite
+      - AWS_ACCESS_KEY_ID=fakeAccessKeyId
+      - AWS_SECRET_ACCESS_KEY=fakeSecretAccessKey
+      - DEFAULT_REGION=sa-east-1
+    ports:
+      - "4566:4566"
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'boaentregadb'
+      MYSQL_USER: 'pozzi'
+      MYSQL_PASSWORD: '12345fe#'
+      MYSQL_ROOT_PASSWORD: '12345fe'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-boaentregadb:/var/lib/mysql
+volumes:
+  my-boaentregadb:
