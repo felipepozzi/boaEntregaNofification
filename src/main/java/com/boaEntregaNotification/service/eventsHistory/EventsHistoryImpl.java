@@ -1,4 +1,4 @@
-package com.boaEntregaNotification.service.eventsHistory.webhook;
+package com.boaEntregaNotification.service.eventsHistory;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,18 @@ public class EventsHistoryImpl implements EventsHistory {
 
         var client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:5000/eventos_historicos"))
+                .uri(URI.create("http://localhost:5000/boaentrega/eventos_historicos"))
+                .POST(HttpRequest.BodyPublishers.ofString(body))
+                .header("Content-Type", "application/json")
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public void saveIndicadores(String body) throws IOException, InterruptedException {
+
+        var client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:5000/boaentrega/indicadores"))
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .header("Content-Type", "application/json")
                 .build();
